@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'static.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Temperature Conversion Calculator</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <select name="choice" required>
+            <option value="1">Celsius → Fahrenheit</option>
+            <option value="2">Celsius → Kelvin</option>
+            <option value="3">Fahrenheit → Celsius</option>
+            <option value="4">Fahrenheit → Kelvin</option>
+            <option value="5">Kelvin → Fahrenheit</option>
+            <option value="6">Kelvin → Celsius</option>
+        </select>
+
+        <input type="number" name="value" step="any" placeholder="Enter temperature" required>
+
+        <button type="submit">Convert</button>
+    </form>
+
+    {% if result %}
+    <div class="output">
+        <p>{{ result }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
